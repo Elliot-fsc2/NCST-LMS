@@ -1,0 +1,26 @@
+models:
+  Department:
+    name: string unique
+    code: string unique
+
+  Course:
+    name: string
+    code: string unique
+    department_id: id foreign
+
+  Student:
+    first_name: string
+    middle_name: string nullable
+    last_name: string
+    student_number: string unique
+    course_id: id foreign
+    
+  Teacher:
+    first_name: string
+    middle_name: string nullable
+    last_name: string
+    department_id: id foreign
+
+controllers:
+  Auth/Register:
+    invokable

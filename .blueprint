@@ -1,0 +1,24 @@
+created:
+    - app/Http/Controllers/Auth/RegisterController.php
+    - database/factories/DepartmentFactory.php
+    - database/factories/CourseFactory.php
+    - database/factories/StudentFactory.php
+    - database/factories/TeacherFactory.php
+    - database/migrations/2026_01_20_150812_create_departments_table.php
+    - database/migrations/2026_01_20_150813_create_courses_table.php
+    - database/migrations/2026_01_20_150814_create_students_table.php
+    - database/migrations/2026_01_20_150815_create_teachers_table.php
+    - app/Models/Department.php
+    - app/Models/Course.php
+    - app/Models/Student.php
+    - app/Models/Teacher.php
+updated:
+    - routes/web.php
+skipped:
+    - resources/views/register.blade.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    Department: { name: 'string unique', code: 'string unique' }
+    Course: { name: string, code: 'string unique', department_id: 'id foreign' }
+    Student: { first_name: string, middle_name: 'string nullable', last_name: string, student_number: 'string unique', course_id: 'id foreign' }
+    Teacher: { first_name: string, middle_name: 'string nullable', last_name: string, department_id: 'id foreign' }

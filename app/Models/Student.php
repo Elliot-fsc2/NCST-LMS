@@ -11,6 +11,13 @@ class Student extends Model
 {
     use HasFactory;
 
+    protected static function booted(): void
+    {
+        static::deleting(function (Student $student) {
+            $student->user?->delete();
+        });
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -38,7 +45,7 @@ class Student extends Model
     }
     public function user(): MorphOne
     {
-        return $this->morphOne(User::class, 'profile');
+        return $this->morphOne(User::class, 'userable');
     }
     public function course(): BelongsTo
     {

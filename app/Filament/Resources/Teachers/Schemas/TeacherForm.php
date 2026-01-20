@@ -31,10 +31,11 @@ class TeacherForm
                             ->email()
                             ->required(),
                         TextInput::make('password')
+                            ->revealable()
                             ->password()
                             ->minLength(8)
-                            ->dehydrated(fn ($state) => filled($state))
-                            ->required(fn (string $operation): bool => $operation === 'create'),
+                            ->dehydrated(fn($state) => filled($state))
+                            ->required(fn(string $operation): bool => $operation === 'create'),
                     ]),
             ]);
     }

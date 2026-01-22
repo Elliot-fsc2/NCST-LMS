@@ -40,7 +40,7 @@
             </label>
             <div class="mt-1">
                 <input id="password" name="password" type="password" autocomplete="current-password" required
-                    class="block w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition"
+                    class="block w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-[#204ab5] focus:ring-2 focus:ring-[#204ab5]/20 transition"
                     placeholder="Enter your password" />
             </div>
             @error('password')
@@ -52,13 +52,13 @@
         <div class="flex items-center justify-between">
             <label class="flex items-center">
                 <input type="checkbox" name="remember"
-                    class="h-4 w-4 rounded border-gray-300 dark:border-gray-700 text-violet-600 focus:ring-violet-500" />
+                    class="h-4 w-4 rounded border-gray-300 dark:border-gray-700 text-[#204ab5] focus:ring-[#204ab5]" />
                 <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
             </label>
 
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}"
-                    class="text-sm font-medium text-violet-600 hover:text-violet-500 transition">
+                    class="text-sm font-medium text-[#204ab5] hover:text-[#1a3d96] transition">
                     Forgot password?
                 </a>
             @endif
@@ -67,7 +67,7 @@
         <!-- Submit Button -->
         <div>
             <button type="submit"
-                class="w-full flex justify-center rounded-lg bg-violet-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 transition">
+                class="w-full flex justify-center rounded-lg bg-[#204ab5] px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#1a3d96] focus:outline-none focus:ring-2 focus:ring-[#204ab5] focus:ring-offset-2 transition">
                 Sign in
             </button>
         </div>

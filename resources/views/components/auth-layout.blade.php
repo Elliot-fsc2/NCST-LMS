@@ -73,7 +73,7 @@
                 <!-- Navigation -->
                 <nav class="flex-1 overflow-y-auto p-4 space-y-1">
                     <a href="{{ route(Auth::user()->role . '.home') }}"
-                        class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs(Auth::user()->role . '.home') ? 'bg-violet-600 text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
+                        class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs(Auth::user()->role . '.home') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
                         <x-heroicon-o-home class="w-5 h-5" />
                         <span>Home</span>
                     </a>
@@ -109,7 +109,7 @@
                         class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-pointer">
                         <div class="relative shrink-0">
                             <div
-                                class="w-10 h-10 rounded-full bg-linear-to-br from-violet-400 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                                class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-semibold text-sm">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
                             </div>
                             <div
@@ -154,7 +154,7 @@
                         <!-- Messages Button -->
                         <button class="relative p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                             <x-heroicon-o-chat-bubble-left-right class="w-5 h-5 text-gray-500" />
-                            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-violet-500 rounded-full"></span>
+                            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#204ab5] rounded-full"></span>
                         </button>
 
                         <!-- Notifications -->
@@ -165,9 +165,9 @@
 
                         <!-- User Badge (Mobile) -->
                         <div
-                            class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-50 dark:bg-violet-900/20">
+                            class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20">
                             <span
-                                class="text-xs font-medium text-violet-700 dark:text-violet-400">{{ ucfirst(Auth::user()->role) }}</span>
+                                class="text-xs font-medium text-blue-700 dark:text-blue-400">{{ ucfirst(Auth::user()->role) }}</span>
                         </div>
                     </div>
                 </div>

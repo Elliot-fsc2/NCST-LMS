@@ -6,7 +6,7 @@
             <!-- Welcome Section -->
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
-                    Welcome back, {{ Auth::user()->profile->student_number }}!
+                    Welcome back, {{ Auth::user()->profile->first_name }}!
                 </h1>
                 <p class="mt-2 text-gray-600 dark:text-gray-400">
                     Here's what's happening with your courses today.

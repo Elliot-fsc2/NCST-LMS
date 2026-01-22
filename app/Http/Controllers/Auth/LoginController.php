@@ -25,7 +25,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            // Redirect based on user role
+               // Redirect based on user role
             $user = Auth::user();
 
             // Prevent admin from logging in through this form

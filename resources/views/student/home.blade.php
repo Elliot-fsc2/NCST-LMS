@@ -1,5 +1,5 @@
 <x-auth-layout>
-    <x-slot name="title">Student Dashboard - {{ config('app.name') }}</x-slot>
+    <x-slot name="title">Dashboard - {{ config('app.name') }}</x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

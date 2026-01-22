@@ -24,8 +24,7 @@
                 Email
             </label>
             <div class="mt-1">
-                <input id="email" name="email" type="email" autocomplete="email" required autofocus
-                    value="{{ old('email') }}"
+                <input id="email" name="email" autocomplete="email" autofocus
                     class="block w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition"
                     placeholder="Enter your email" />
             </div>

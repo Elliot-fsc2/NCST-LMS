@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required'],
             'password' => ['required'],
         ]);
 
@@ -28,11 +28,23 @@ class LoginController extends Controller
             // Redirect based on user role
             $user = Auth::user();
 
+            // Prevent admin from logging in through this form
+            if ($user->role === 'admin') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'email' => 'The provided credentials do not match our records.',
+                ])->onlyInput('email');
+            }
+
             return match ($user->role) {
                 'student' => redirect('/'),
                 'teacher' => redirect('/teacher'),
-                'admin' => redirect('/admin'),
-                default => redirect('/'),
+                default => back()->withErrors([
+                    'email' => 'The provided credentials do not match our records.',
+                ])->onlyInput('email'),
             };
         }
 

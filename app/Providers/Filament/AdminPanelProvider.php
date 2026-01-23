@@ -24,10 +24,11 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->brandName(fn(): View => view('admin.brand'))
+            // ->brandName(fn(): View => view('admin.brand'))
+            ->brandName('Admin LMS')
             ->id('admin')
             ->path('admin')
-            ->favicon(asset('images/logo.png'))
+            // ->favicon(asset('images/logo.png'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->colors([

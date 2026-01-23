@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    {{-- <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}"> --}}
 
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -58,11 +58,11 @@
             <div class="flex flex-col h-full">
                 <!-- Logo -->
                 <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-800">
-                    <div class="flex items-center gap-3">
-                        <div class="flex items-center justify-center w-10 h-10 rounded-xl">
+                    <div class="flex items-center justify-center gap-3">
+                        {{-- <div class="flex items-center justify-center w-10 h-10 rounded-xl">
                             <img src="{{ asset('images/logo.png') }}" alt="NCST Logo" class="w-8 h-8 object-contain" />
-                        </div>
-                        <span class="text-xl font-bold text-gray-900 dark:text-white">NCST LMS</span>
+                        </div> --}}
+                        <span class="text-xl font-bold text-gray-900 dark:text-white">LMS</span>
                     </div>
                     <button @click="sidebarOpen = false"
                         class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">

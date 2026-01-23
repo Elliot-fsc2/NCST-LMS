@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    {{-- <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}"> --}}
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -28,8 +28,8 @@
             <div class="relative z-10 flex flex-col justify-between p-12 w-full">
                 <div>
                     <div class="flex items-center gap-3">
-                        <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'NCST LMS') }} Logo"
-                            class="w-10 h-10 rounded" />
+                        {{-- <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'NCST LMS') }} Logo"
+                            class="w-10 h-10 rounded" /> --}}
                         <span class="text-2xl font-bold text-white">{{ config('app.name', 'NCST LMS') }}</span>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="text-sm text-white/70">
-                    © {{ date('Y') }} NCST. All rights reserved.
+                    © {{ date('Y') }} LMS. All rights reserved.
                 </div>
             </div>
         </div>
@@ -55,8 +55,9 @@
             <div class="w-full max-w-md space-y-8">
                 <!-- Mobile Logo -->
                 <div class="lg:hidden flex items-center justify-center gap-3 mb-8">
-                        <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'NCST LMS') }} Logo" class="w-10 h-10 rounded" />
-                   
+                    <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'NCST LMS') }} Logo"
+                        class="w-10 h-10 rounded" />
+
                     <span
                         class="text-xl font-bold text-[#1b1b18] dark:text-white">{{ config('app.name', 'NCST LMS') }}</span>
                 </div>

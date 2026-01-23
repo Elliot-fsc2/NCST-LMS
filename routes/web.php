@@ -1,9 +1,26 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/login');
+Route::get('/', function () {
+    return match (Auth::user()?->role) {
+        'admin' => redirect('admin'),
+        'teacher' => redirect()->route('teacher.home'),
+        'student' => redirect()->route('student.home'),
+        default => redirect()->route('login'),
+    };
+});
+
+Route::fallback(function () {
+    return match (Auth::user()?->role) {
+        'admin' => redirect('admin'),
+        'teacher' => redirect()->route('teacher.home'),
+        'student' => redirect()->route('student.home'),
+        default => redirect()->route('login'),
+    };
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [LoginController::class, 'create'])->name('login');

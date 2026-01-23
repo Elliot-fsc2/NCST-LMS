@@ -21,6 +21,7 @@ models:
     last_name: string
     department_id: id foreign
 
+seeders: Student, Teacher, Department, Course
 controllers:
   Auth/Register:
     invokable

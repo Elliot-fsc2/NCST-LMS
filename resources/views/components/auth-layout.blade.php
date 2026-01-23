@@ -121,7 +121,7 @@
                                 {{ Auth::user()->name }}</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400 truncate">View Account</p>
                         </div>
-                        <form method="POST" action="{{ route('logout') }}" class="flex-shrink-0">
+                        <form method="POST" action="{{ route('logout') }}" class="shrink-0">
                             @csrf
                             <button type="submit"
                                 class="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition"

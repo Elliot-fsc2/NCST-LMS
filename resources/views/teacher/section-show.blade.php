@@ -33,7 +33,8 @@
             <div class="mb-4 md:mb-6 -mx-4 sm:mx-0">
                 <div class="border-b border-gray-200 dark:border-gray-800">
                     <nav class="flex gap-1 md:gap-2 overflow-x-auto hide-scrollbar px-4 sm:px-0" aria-label="Tabs">
-                        <a wire:navigate href="{{ route('teacher.sections.show', ['section' => $section, 'tab' => 'lessons']) }}"
+                        <a wire:navigate
+                            href="{{ route('teacher.sections.show', ['section' => $section, 'tab' => 'lessons']) }}"
                             class="px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-medium transition-colors border-b-2 whitespace-nowrap {{ $activeTab === 'lessons' ? 'border-[#204ab5] text-[#204ab5] dark:text-blue-400 dark:border-blue-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' }}">
                             <div class="flex items-center gap-1.5 md:gap-2">
                                 <x-heroicon-o-book-open class="w-4 h-4 md:w-5 md:h-5" />
@@ -41,7 +42,8 @@
                             </div>
                         </a>
 
-                        <a wire:navigate href="{{ route('teacher.sections.show', ['section' => $section, 'tab' => 'news']) }}"
+                        <a wire:navigate
+                            href="{{ route('teacher.sections.show', ['section' => $section, 'tab' => 'news']) }}"
                             class="px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-medium transition-colors border-b-2 whitespace-nowrap {{ $activeTab === 'news' ? 'border-[#204ab5] text-[#204ab5] dark:text-blue-400 dark:border-blue-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' }}">
                             <div class="flex items-center gap-1.5 md:gap-2">
                                 <x-heroicon-o-newspaper class="w-4 h-4 md:w-5 md:h-5" />
@@ -49,7 +51,8 @@
                             </div>
                         </a>
 
-                        <a wire:navigate href="{{ route('teacher.sections.show', ['section' => $section, 'tab' => 'students']) }}"
+                        <a wire:navigate
+                            href="{{ route('teacher.sections.show', ['section' => $section, 'tab' => 'students']) }}"
                             class="px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-medium transition-colors border-b-2 whitespace-nowrap {{ $activeTab === 'students' ? 'border-[#204ab5] text-[#204ab5] dark:text-blue-400 dark:border-blue-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' }}">
                             <div class="flex items-center gap-1.5 md:gap-2">
                                 <x-heroicon-o-user-group class="w-4 h-4 md:w-5 md:h-5" />
@@ -57,7 +60,8 @@
                             </div>
                         </a>
 
-                        <a wire:navigate href="{{ route('teacher.sections.show', ['section' => $section, 'tab' => 'teachers']) }}"
+                        <a wire:navigate
+                            href="{{ route('teacher.sections.show', ['section' => $section, 'tab' => 'teachers']) }}"
                             class="px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-medium transition-colors border-b-2 whitespace-nowrap {{ $activeTab === 'teachers' ? 'border-[#204ab5] text-[#204ab5] dark:text-blue-400 dark:border-blue-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' }}">
                             <div class="flex items-center gap-1.5 md:gap-2">
                                 <x-heroicon-o-academic-cap class="w-4 h-4 md:w-5 md:h-5" />
@@ -71,13 +75,13 @@
             <!-- Tab Content -->
             <div>
                 @if ($activeTab === 'lessons')
-                    @include('livewire.teacher.section-show.lessons')
+                    @include('teacher.section-show.lessons')
                 @elseif ($activeTab === 'news')
-                    @include('livewire.teacher.section-show.news')
+                    @include('teacher.section-show.news')
                 @elseif ($activeTab === 'students')
-                    @include('livewire.teacher.section-show.students')
+                    @include('teacher.section-show.students')
                 @elseif ($activeTab === 'teachers')
-                    @include('livewire.teacher.section-show.teachers')
+                    @include('teacher.section-show.teachers')
                 @endif
             </div>
         </div>

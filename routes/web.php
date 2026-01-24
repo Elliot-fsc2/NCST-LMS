@@ -46,4 +46,19 @@ Route::middleware(['auth', 'teacher'])->prefix('teacher')->group(function () {
     })->name('teacher.home');
 
     Route::get('/sections', Sections::class)->name('teacher.sections');
+
+    Route::get('/sections/{section}', function (\App\Models\Section $section) {
+        $tab = request('tab', 'lessons');
+
+        match ($tab) {
+            'students' => $section->load(['course', 'teacher.user', 'students.user']),
+            'lessons' => $section->load(['course', 'teacher.user', 'lessons']),
+            default => $section->load(['course', 'teacher.user']),
+        };
+
+        return view('teacher.section-show', [
+            'section' => $section,
+            'activeTab' => $tab,
+        ]);
+    })->name('teacher.sections.show');
 });

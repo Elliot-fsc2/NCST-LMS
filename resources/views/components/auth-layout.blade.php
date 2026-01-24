@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? config('app.name', 'NCST LMS') }}</title>
+    <title>{{ $title ?? config('app.name', 'LMS') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -57,6 +57,16 @@
         .dark ::-webkit-scrollbar-thumb:hover {
             background: rgb(75 85 99);
         }
+
+        /* Hide scrollbar for mobile tabs */
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 
@@ -91,7 +101,7 @@
 
                     @if (Auth::user()->role === 'teacher')
                         <a href="{{ route('teacher.sections') }}" wire:navigate
-                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs('teacher.sections') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs('teacher.sections', 'teacher.sections.*') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
                             <x-heroicon-o-academic-cap class="w-5 h-5" />
                             <span>My Sections</span>
                         </a>

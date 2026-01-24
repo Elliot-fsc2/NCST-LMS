@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'component_layout' => 'components::auth-layout',
+    'component_layout' => 'components.auth-layout',
 
     /*
     |---------------------------------------------------------------------------

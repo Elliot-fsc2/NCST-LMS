@@ -21,12 +21,12 @@
         </div>
     @else
         <!-- Sections Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach ($sections as $section)
                 <div
                     class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-lg transition-shadow duration-300">
                     <!-- Card Header with Course Color -->
-                    <div class="h-2 bg-gradient-to-r from-[#204ab5] to-blue-600"></div>
+                    <div class="h-2 bg-linear-to-r from-[#204ab5] to-blue-600"></div>
 
                     <div class="p-6">
                         <!-- Section Info -->
@@ -71,7 +71,7 @@
 
                         <!-- Action Button -->
                         <div class="pt-4 border-t border-gray-100 dark:border-gray-800">
-                            <a href="#"
+                            <a href="{{ route('teacher.sections.show', $section) }}"
                                 class="flex items-center justify-center gap-2 w-full px-4 py-2.5 text-sm font-medium text-white bg-[#204ab5] hover:bg-[#1a3d94] rounded-lg transition-colors duration-200">
                                 <x-heroicon-o-eye class="w-4 h-4" />
                                 View Section

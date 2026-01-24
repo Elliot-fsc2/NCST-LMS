@@ -14,6 +14,8 @@ models:
     last_name: string
     student_number: string unique
     course_id: id foreign
+    relationships:
+       belongsToMany: Section
     
   Teacher:
     first_name: string
@@ -21,7 +23,59 @@ models:
     last_name: string
     department_id: id foreign
 
-seeders: Student, Teacher, Department, Course
-controllers:
-  Auth/Register:
-    invokable
+  Section:
+    name: string
+    course_id: id foreign
+    teacher_id: id foreign 
+    relationships:
+       belongsToMany: Student
+
+  Lesson:
+    title: string
+    content: text
+    section_id: id foreign
+    file_path: string
+
+  Quiz:
+    title: string
+    description: text nullable
+    section_id: id foreign
+    time_limit: integer nullable
+    max_attempts: integer nullable
+    is_published: boolean default:false
+    available_from: timestamp nullable
+    available_until: timestamp nullable
+    relationships:
+       hasMany: Question
+
+  Question:
+    quiz_id: id foreign
+    question_text: text
+    question_type: enum('multiple_choice', 'true_false', 'short_answer')
+    correct_answer: text nullable
+    points: decimal:5,2 default:1
+    relationships:
+       hasMany: Option
+       
+  Option:
+    question_id: id foreign
+    option_text: string
+    is_correct: boolean
+
+  QuizAttempt:
+    quiz_id: id foreign
+    student_id: id foreign
+    score: decimal:5,2 nullable
+    started_at: timestamp nullable
+    completed_at: timestamp nullable
+    relationships:
+       hasMany: StudentAnswer
+
+  StudentAnswer:
+    quiz_attempt_id: id foreign
+    question_id: id foreign
+    option_id: id foreign nullable
+    answer_text: text nullable
+    is_correct: boolean nullable
+
+# seeders: Student, Teacher, Department, Course

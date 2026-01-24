@@ -171,11 +171,11 @@ return [
     */
     'generators' => [
         'controller' => \Blueprint\Generators\ControllerGenerator::class,
-        'factory' => \Blueprint\Generators\FactoryGenerator::class,
+        // 'factory' => \Blueprint\Generators\FactoryGenerator::class,
         'migration' => \Blueprint\Generators\MigrationGenerator::class,
         'model' => \Blueprint\Generators\ModelGenerator::class,
         'route' => \Blueprint\Generators\RouteGenerator::class,
-        'seeder' => \Blueprint\Generators\SeederGenerator::class,
+        // 'seeder' => \Blueprint\Generators\SeederGenerator::class,
         // 'test' => \Blueprint\Generators\PhpUnitTestGenerator::class,
         // 'test' => \Blueprint\Generators\PestTestGenerator::class,
         'event' => \Blueprint\Generators\Statements\EventGenerator::class,

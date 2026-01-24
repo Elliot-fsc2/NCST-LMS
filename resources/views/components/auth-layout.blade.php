@@ -16,8 +16,8 @@
 
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @filamentStyles
     @livewireStyles
-
 
     <style>
         /* Custom scrollbar */
@@ -78,29 +78,55 @@
                         <span>Home</span>
                     </a>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                        <x-heroicon-o-book-open class="w-5 h-5" />
-                        <span>Academic</span>
-                    </a>
+                    @if (Auth::user()->role === 'teacher')
+                        <a href="#"
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            <x-heroicon-o-academic-cap class="w-5 h-5" />
+                            <span>My Sections</span>
+                        </a>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                        <x-heroicon-o-clock class="w-5 h-5" />
-                        <span>Class Routine</span>
-                    </a>
+                        <a href="#"
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            <x-heroicon-o-user-group class="w-5 h-5" />
+                            <span>Students</span>
+                        </a>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                        <x-heroicon-o-newspaper class="w-5 h-5" />
-                        <span>News</span>
-                    </a>
+                        <a href="#"
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            <x-heroicon-o-chart-bar class="w-5 h-5" />
+                            <span>Grades</span>
+                        </a>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                        <x-heroicon-o-calendar class="w-5 h-5" />
-                        <span>Calendar</span>
-                    </a>
+                        <a href="#"
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            <x-heroicon-o-calendar class="w-5 h-5" />
+                            <span>Calendar</span>
+                        </a>
+                    @else
+                        <a href="#"
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            <x-heroicon-o-book-open class="w-5 h-5" />
+                            <span>Academic</span>
+                        </a>
+
+                        <a href="#"
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            <x-heroicon-o-clock class="w-5 h-5" />
+                            <span>Class Routine</span>
+                        </a>
+
+                        <a href="#"
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            <x-heroicon-o-newspaper class="w-5 h-5" />
+                            <span>News</span>
+                        </a>
+
+                        <a href="#"
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                            <x-heroicon-o-calendar class="w-5 h-5" />
+                            <span>Calendar</span>
+                        </a>
+                    @endif
                 </nav>
 
                 <!-- User Profile -->
@@ -109,9 +135,10 @@
                         class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-pointer">
                         <div class="relative shrink-0">
                             <div
-                                class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-semibold text-sm">
+                                class="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-semibold text-sm">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
                             </div>
+
                             <div
                                 class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-gray-900 rounded-full">
                             </div>
@@ -187,6 +214,7 @@
         class="fixed inset-0 bg-black/50 z-40 lg:hidden" style="display: none;"></div>
 
     @livewireScripts
+    @filamentScripts
 </body>
 
 </html>

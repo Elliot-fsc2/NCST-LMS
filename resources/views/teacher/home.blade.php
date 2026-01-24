@@ -58,6 +58,21 @@
 
                     </div>
                 </div>
+
+
+            </div>
+            <div x-data="{
+                count: 0
+            }"
+            class="flex justify-center items-center flex-col bg-white dark:bg-gray-900 pb-5 rounded-lg border border-gray-200 dark:border-gray-800">
+                <button @click="count++"
+                    class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    Clicked <span x-text="count"></span> times
+                </button>
+
+                <template x-if="count % 5 === 0 && count !== 0">
+                    <p class="mt-2 text-green-600 font-bold block">You've reached a multiple of 5!</p>
+                </template>
             </div>
         </div>
     </div>

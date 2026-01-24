@@ -14,6 +14,17 @@
 
     {{-- <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}"> --}}
 
+    <!-- Dark Mode Script - Must run before body renders to prevent flash -->
+    <script>
+        // This runs immediately to prevent flash of light mode
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @filamentStyles
@@ -72,15 +83,15 @@
 
                 <!-- Navigation -->
                 <nav class="flex-1 overflow-y-auto p-4 space-y-1">
-                    <a href="{{ route(Auth::user()->role . '.home') }}"
+                    <a href="{{ route(Auth::user()->role . '.home') }}" wire:navigate
                         class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs(Auth::user()->role . '.home') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
                         <x-heroicon-o-home class="w-5 h-5" />
                         <span>Home</span>
                     </a>
 
                     @if (Auth::user()->role === 'teacher')
-                        <a href="#"
-                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <a href="{{ route('teacher.sections') }}" wire:navigate
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs('teacher.sections') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
                             <x-heroicon-o-academic-cap class="w-5 h-5" />
                             <span>My Sections</span>
                         </a>
@@ -191,11 +202,11 @@
                         </button>
 
                         <!-- User Badge (Mobile) -->
-                        <div
+                        {{-- <div
                             class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20">
                             <span
                                 class="text-xs font-medium text-blue-700 dark:text-blue-400">{{ ucfirst(Auth::user()->role) }}</span>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </header>

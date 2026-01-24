@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Livewire\Teacher\Sections;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,4 +44,6 @@ Route::middleware(['auth', 'teacher'])->prefix('teacher')->group(function () {
     Route::get('/', function () {
         return view('teacher.home');
     })->name('teacher.home');
+
+    Route::get('/sections', Sections::class)->name('teacher.sections');
 });

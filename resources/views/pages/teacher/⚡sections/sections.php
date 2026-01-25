@@ -8,6 +8,10 @@ use Livewire\Component;
 new #[Title('My Sections')]
 class extends Component
 {
+    // public function mount()
+    // {
+    //     Auth::loginUsingId(2);
+    // }
     public function with(): array
     {
         $teacher = Auth::user()->profile;

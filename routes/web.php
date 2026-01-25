@@ -47,18 +47,7 @@ Route::middleware(['auth', 'teacher'])->prefix('teacher')->group(function () {
 
     Route::livewire('/sections', 'pages::teacher.sections')->name('teacher.sections');
 
-    Route::middleware('can:view,section')->get('/sections/{section}', function (\App\Models\Section $section) {
-        $tab = request('tab', 'lessons');
-
-        match ($tab) {
-            'students' => $section->load(['course', 'teacher.user', 'students.user']),
-            'lessons' => $section->load(['course', 'teacher.user', 'lessons']),
-            default => $section->load(['course', 'teacher.user']),
-        };
-
-        return view('teacher.section-show', [
-            'section' => $section,
-            'activeTab' => $tab,
-        ]);
-    })->name('teacher.sections.show');
+    Route::livewire('/sections/{section}', 'pages::teacher.sections.section-show')
+        ->middleware('can:view,section')
+        ->name('teacher.sections.show');
 });

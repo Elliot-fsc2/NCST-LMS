@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Livewire\Teacher;
-
 use App\Models\Section;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('My Sections')]
-class Sections extends Component
+new #[Title('My Sections')]
+class extends Component
 {
-    public function render(): View
+    public function with(): array
     {
         $teacher = Auth::user()->profile;
 
@@ -21,8 +18,8 @@ class Sections extends Component
             ->withCount('students')
             ->get();
 
-        return view('livewire.teacher.sections', [
+        return [
             'sections' => $sections,
-        ]);
+        ];
     }
-}
+};

@@ -45,7 +45,7 @@ Route::middleware(['auth', 'teacher'])->prefix('teacher')->group(function () {
         return view('teacher.home');
     })->name('teacher.home');
 
-    Route::get('/sections', Sections::class)->name('teacher.sections');
+    Route::livewire('/sections', 'pages::teacher.sections')->name('teacher.sections');
 
     Route::get('/sections/{section}', function (\App\Models\Section $section) {
         $tab = request('tab', 'lessons');

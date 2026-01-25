@@ -25,11 +25,11 @@
                     <div class="flex items-start justify-between gap-3">
                         <div class="flex-1 min-w-0">
                             <div class="flex items-start gap-2 md:gap-3 mb-2">
-                                <div
+                                {{-- <div
                                     class="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 shrink-0">
                                     <x-heroicon-o-book-open
                                         class="w-4 h-4 md:w-5 md:h-5 text-[#204ab5] dark:text-blue-400" />
-                                </div>
+                                </div> --}}
                                 <div class="min-w-0">
                                     <h3 class="text-sm md:text-lg font-semibold text-gray-900 dark:text-white truncate">
                                         {{ $lesson->title }}
@@ -40,11 +40,11 @@
                                 </div>
                             </div>
 
-                            @if ($lesson->description)
+                            {{-- @if ($lesson->description)
                                 <p class="mt-3 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
                                     {{ $lesson->description }}
                                 </p>
-                            @endif
+                            @endif --}}
 
                             @if ($lesson->content)
                                 <div class="mt-4 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">

@@ -60,15 +60,6 @@
                                 </div>
                             @endif
                         </div>
-
-                        <!-- Contact Button -->
-                        <div class="mt-4 md:mt-6">
-                            <button
-                                class="inline-flex items-center gap-2 px-4 py-2 text-xs md:text-sm font-medium text-white bg-[#204ab5] hover:bg-[#1a3d94] rounded-lg transition-colors duration-200 w-full sm:w-auto justify-center">
-                                <x-heroicon-o-chat-bubble-left class="w-4 h-4" />
-                                Contact Teacher
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>

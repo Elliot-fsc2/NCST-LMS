@@ -8,7 +8,7 @@
                 <div class="flex items-center justify-between">
                     <div class="min-w-0 flex-1">
                         <div class="flex items-center gap-2 md:gap-3 mb-2">
-                            <a href="{{ route('teacher.sections') }}"
+                            <a href="{{ route('teacher.sections') }}" wire:navigate
                                 class="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors shrink-0">
                                 <x-heroicon-o-arrow-left class="w-4 h-4 text-gray-600 dark:text-gray-400" />
                             </a>

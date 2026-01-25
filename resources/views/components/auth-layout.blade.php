@@ -30,44 +30,6 @@
     @filamentStyles
     @livewireStyles
 
-    <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgb(209 213 219);
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgb(156 163 175);
-        }
-
-        .dark ::-webkit-scrollbar-thumb {
-            background: rgb(55 65 81);
-        }
-
-        .dark ::-webkit-scrollbar-thumb:hover {
-            background: rgb(75 85 99);
-        }
-
-        /* Hide scrollbar for mobile tabs */
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 antialiased" x-data="{ sidebarOpen: false }">

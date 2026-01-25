@@ -50,4 +50,17 @@ Route::middleware(['auth', 'teacher'])->prefix('teacher')->group(function () {
     Route::livewire('/sections/{section}', 'pages::teacher.sections.section-show')
         ->middleware('can:view,section')
         ->name('teacher.sections.show');
+
+    Route::livewire('/sections/{section}/lessons/create', 'pages::teacher.lesson-tab.create')
+        ->name('teacher.lesson.create');
+
+    Route::livewire('/sections/{section}/lessons/{lesson:id}', 'pages::teacher.lesson-tab.view')
+        ->middleware('can:view,lesson')
+        ->scopeBindings()
+        ->name('teacher.lesson.view');
+
+    Route::livewire('/sections/{section}/lessons/{lesson:id}/edit', 'pages::teacher.lesson-tab.edit')
+        ->middleware('can:update,lesson')
+        ->scopeBindings()
+        ->name('teacher.lesson.edit');
 });

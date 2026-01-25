@@ -22,6 +22,7 @@ models:
     middle_name: string nullable
     last_name: string
     department_id: id foreign
+    is_department_head: boolean default:false
 
   Section:
     name: string

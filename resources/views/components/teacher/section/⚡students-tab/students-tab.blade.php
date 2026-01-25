@@ -1,9 +1,5 @@
-@php
-    $students = $section->students;
-@endphp
-
 <div>
-    @if ($students->isEmpty())
+    @if ($section->students->isEmpty())
         <!-- Empty State -->
         <div
             class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-8 md:p-12 text-center">
@@ -28,14 +24,14 @@
                     </h3>
                     <span
                         class="inline-flex items-center px-2 md:px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
-                        {{ $students->count() }} {{ Str::plural('Student', $students->count()) }}
+                        {{ $section->students->count() }} {{ Str::plural('Student', $section->students->count()) }}
                     </span>
                 </div>
             </div>
 
             <!-- Students List -->
             <div class="divide-y divide-gray-200 dark:divide-gray-800">
-                @foreach ($students as $student)
+                @foreach ($section->students as $student)
                     <div class="px-4 md:px-6 py-3 md:py-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                         <div class="flex items-center justify-between gap-3">
                             <div class="flex items-center gap-3 md:gap-4 min-w-0 flex-1">

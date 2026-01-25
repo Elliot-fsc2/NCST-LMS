@@ -29,6 +29,7 @@ class Teacher extends Model
         'middle_name',
         'last_name',
         'department_id',
+        'is_department_head',
     ];
 
     /**
@@ -41,6 +42,7 @@ class Teacher extends Model
         return [
             'id' => 'integer',
             'department_id' => 'integer',
+            'is_department_head' => 'boolean',
         ];
     }
 

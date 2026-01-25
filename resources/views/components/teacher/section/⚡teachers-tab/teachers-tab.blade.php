@@ -1,9 +1,5 @@
-@php
-    $teacher = $section->teacher;
-@endphp
-
 <div>
-    @if ($teacher)
+    @if ($section->teacher)
         <!-- Teacher Info Card -->
         <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
             <div
@@ -18,17 +14,17 @@
                     <!-- Avatar -->
                     <div
                         class="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-linear-to-br from-[#204ab5] to-blue-600 text-white font-bold text-xl md:text-2xl shrink-0">
-                        {{ strtoupper(substr($teacher->user->name ?? 'T', 0, 1)) }}
+                        {{ strtoupper(substr($section->teacher->user->name ?? 'T', 0, 1)) }}
                     </div>
 
                     <!-- Teacher Details -->
                     <div class="flex-1 min-w-0">
                         <h4 class="text-lg md:text-xl font-semibold text-gray-900 dark:text-white truncate">
-                            {{ $teacher->user->name ?? 'Unknown Teacher' }}
+                            {{ $section->teacher->user->name ?? 'Unknown Teacher' }}
                         </h4>
 
                         <div class="mt-3 md:mt-4 space-y-2 md:space-y-3">
-                            @if ($teacher->user->email)
+                            @if ($section->teacher->user->email)
                                 <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm">
                                     <div
                                         class="flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
@@ -38,13 +34,13 @@
                                     <div class="min-w-0">
                                         <p class="text-gray-500 dark:text-gray-400">Email</p>
                                         <p class="font-medium text-gray-900 dark:text-white truncate">
-                                            {{ $teacher->user->email }}
+                                            {{ $section->teacher->user->email }}
                                         </p>
                                     </div>
                                 </div>
                             @endif
 
-                            @if ($teacher->department_id)
+                            @if ($section->teacher->department_id)
                                 <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm">
                                     <div
                                         class="flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
@@ -54,7 +50,7 @@
                                     <div class="min-w-0">
                                         <p class="text-gray-500 dark:text-gray-400">Department</p>
                                         <p class="font-medium text-gray-900 dark:text-white truncate">
-                                            {{ $teacher->department->name ?? 'Unknown' }}
+                                            {{ $section->teacher->department->name ?? 'Unknown' }}
                                         </p>
                                     </div>
                                 </div>

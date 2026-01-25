@@ -23,18 +23,16 @@ class extends Component
 
     public function with(): array
     {
-        $section = $this->section;
-
         match ($this->tab) {
-            'students' => $section->load(['course', 'teacher.user', 'students.user']),
-            'lessons' => $section->load(['course', 'teacher.user', 'lessons']),
-            'teachers' => $section->load(['course', 'teacher.user']),
-            default => $section->load(['course', 'teacher.user']),
+            'students' => $this->section->load(['course', 'teacher.user', 'students.user']),
+            'lessons' => $this->section->load(['course', 'teacher.user', 'lessons']),
+            'teachers' => $this->section->load(['course', 'teacher.user']),
+            default => $this->section->load(['course', 'teacher.user']),
         };
 
         return [
-            'section' => $section,
             'activeTab' => $this->tab,
+            'section' => $this->section,
         ];
     }
 

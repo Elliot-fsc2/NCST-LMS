@@ -63,7 +63,7 @@
 
                     @if (Auth::user()->role === 'teacher')
                         <a href="{{ route('teacher.sections') }}" wire:navigate
-                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs('teacher.sections', 'teacher.sections.*') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
+                            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs('teacher.sections', 'teacher.sections.*', 'teacher.lesson.*') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
                             <x-heroicon-o-academic-cap class="w-5 h-5" />
                             <span>My Sections</span>
                         </a>
@@ -155,8 +155,14 @@
                             <x-heroicon-o-bars-3 class="w-6 h-6" />
                         </button>
                         <div>
-                            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $header ?? 'Dashboard' }}
+                            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+                                {{ $header ?? 'Dashboard' }}
                             </h1>
+                            @isset($subheader)
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                                    {{ $subheader }}
+                                </p>
+                            @endisset
                         </div>
                     </div>
 
@@ -196,6 +202,7 @@
     <div x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"
         class="fixed inset-0 bg-black/50 z-40 lg:hidden" style="display: none;"></div>
 
+    @livewire('notifications')
     @livewireScripts
     @filamentScripts
 </body>

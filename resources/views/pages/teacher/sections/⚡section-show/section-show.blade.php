@@ -1,32 +1,9 @@
 <x-slot name="title">{{ $section->name }} - {{ config('app.name') }}</x-slot>
+<x-slot name="header">{{ $section->name }}</x-slot>
+<x-slot name="subheader">{{ $section->course->name ?? 'No Course' }}</x-slot>
 
-<div class="py-6 md:py-2">
+<div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Page Header -->
-        <div class="mb-6 md:mb-8">
-            <div class="flex items-center justify-between">
-                <div class="min-w-0 flex-1">
-                    <div class="flex items-center gap-2 md:gap-3 mb-2">
-                        <a href="{{ route('teacher.sections') }}" wire:navigate
-                            class="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors shrink-0">
-                            <x-heroicon-o-arrow-left class="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                        </a>
-                        <h2
-                            class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white whitespace-normal md:truncate">
-                            {{ $section->name }}</h2>
-                    </div>
-                    <p
-                        class="text-xs md:text-sm text-gray-600 dark:text-gray-400 px-10 md:px-11 whitespace-normal md:truncate">
-                        {{ $section->course->name ?? 'No Course' }}
-                        @if ($section->course?->code)
-                            <span class="text-gray-400">•</span>
-                            <span
-                                class="text-[#204ab5] dark:text-blue-400 font-medium">{{ $section->course->code }}</span>
-                        @endif
-                    </p>
-                </div>
-            </div>
-        </div>
 
         <!-- Tabs Navigation -->
         <div class="mb-4 md:mb-6 -mx-4 sm:mx-0">
@@ -70,13 +47,13 @@
         <!-- Tab Content -->
         <div>
             @if ($activeTab === 'lessons')
-                @include('teacher.section-show.lessons')
+                <livewire:teacher.section.lessons-tab :section="$section" />
             @elseif ($activeTab === 'news')
-                @include('teacher.section-show.news')
+                <livewire:teacher.section.news-tab :section="$section" />
             @elseif ($activeTab === 'students')
-                @include('teacher.section-show.students')
+                <livewire:teacher.section.students-tab :section="$section" />
             @elseif ($activeTab === 'teachers')
-                @include('teacher.section-show.teachers')
+                <livewire:teacher.section.teachers-tab :section="$section" />
             @endif
         </div>
     </div>

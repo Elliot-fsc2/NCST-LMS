@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->foreignId('section_id')->constrained();
-            $table->string('file_path');
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
 

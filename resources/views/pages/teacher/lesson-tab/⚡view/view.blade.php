@@ -46,11 +46,12 @@
                             </p>
                         </div>
                     </div>
-                    <button wire:click="downloadFile"
+                    <a href="{{ Storage::url($lesson->file_path) }}" download="{{ basename($lesson->file_path) }}"
+                        target="_blank"
                         class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
                         <x-heroicon-o-arrow-down-tray class="w-4 h-4" />
                         <span>Download</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         @endif

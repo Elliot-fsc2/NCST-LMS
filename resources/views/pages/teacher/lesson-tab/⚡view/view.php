@@ -17,13 +17,4 @@ class extends Component
 
         $this->lesson = $lesson->load('section.course');
     }
-
-    public function downloadFile(): \Symfony\Component\HttpFoundation\StreamedResponse
-    {
-        if (!$this->lesson->file_path) {
-            abort(404);
-        }
-
-        return Storage::disk('public')->download($this->lesson->file_path);
-    }
 };

@@ -47,7 +47,7 @@ Route::middleware(['auth', 'teacher'])->prefix('teacher')->group(function () {
 
     Route::livewire('/sections', 'pages::teacher.sections')->name('teacher.sections');
 
-    Route::get('/sections/{section}', function (\App\Models\Section $section) {
+    Route::middleware('can:view,section')->get('/sections/{section}', function (\App\Models\Section $section) {
         $tab = request('tab', 'lessons');
 
         match ($tab) {

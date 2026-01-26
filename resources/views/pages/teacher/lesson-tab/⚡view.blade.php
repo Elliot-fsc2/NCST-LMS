@@ -1,3 +1,25 @@
+<?php
+
+use App\Models\Lesson;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+
+new #[Layout('components.auth-layout')]
+class extends Component
+{
+    public Lesson $lesson;
+
+    public function mount(Lesson $lesson): void
+    {
+        Gate::authorize('view', $lesson);
+
+        $this->lesson = $lesson->load('section.course');
+    }
+};
+?>
+
 <x-slot name="title">{{ $lesson->title }} - {{ config('app.name') }}</x-slot>
 <x-slot name="header">{{ $lesson->title }}</x-slot>
 <x-slot name="subheader">{{ $lesson->section->course->code }} - {{ $lesson->section->name }}</x-slot>

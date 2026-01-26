@@ -85,6 +85,24 @@
                             <x-heroicon-o-calendar class="w-5 h-5" />
                             <span>Calendar</span>
                         </a>
+
+                        @if (Auth::user()->profile?->is_department_head)
+                            <!-- System Navigation Group -->
+                            <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-800">
+                                <div class="px-4 mb-2">
+                                    <h3
+                                        class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        System
+                                    </h3>
+                                </div>
+
+                                <a href="{{ route('teacher.manage-sections') }}"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs('teacher.manage-sections') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
+                                    <x-heroicon-o-cog-6-tooth class="w-5 h-5" />
+                                    <span>Manage Sections</span>
+                                </a>
+                            </div>
+                        @endif
                     @else
                         <a href="#"
                             class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">

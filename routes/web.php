@@ -63,4 +63,6 @@ Route::middleware(['auth', 'teacher'])->prefix('teacher')->group(function () {
         ->middleware('can:update,lesson')
         ->scopeBindings()
         ->name('teacher.lesson.edit');
+
+    Route::livewire('/manage-sections', 'pages::teacher.manage-sections')->name('teacher.manage-sections');
 });

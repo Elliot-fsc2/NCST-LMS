@@ -1,3 +1,28 @@
+<?php
+
+use App\Models\Section;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
+use Livewire\Component;
+
+new #[Title('My Sections')] class extends Component {
+    public function with(): array
+    {
+        $teacher = Auth::user()->profile;
+
+        $sections = Section::query()
+            ->where('teacher_id', $teacher->id)
+            ->with(['course', 'students'])
+            ->withCount('students')
+            ->get();
+
+        return [
+            'sections' => $sections,
+        ];
+    }
+};
+?>
+
 <x-slot name="header">My Sections</x-slot>
 <x-slot name="subheader"> Manage your class sections and view enrolled students.
 </x-slot>

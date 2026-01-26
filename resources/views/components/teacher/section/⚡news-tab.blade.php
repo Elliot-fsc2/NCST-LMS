@@ -1,25 +1,50 @@
 <?php
 
 use App\Models\Section;
+use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 
-new class extends Component
-{
+new class extends Component implements HasActions, HasForms {
+    use InteractsWithActions;
+    use InteractsWithForms;
+
     public Section $section;
 
-    public function mount(Section $section): void
+    public function news()
     {
-        $this->section = $section;
+        return $this->section->news()->latest()->get();
+    }
+
+    public function createAction(): Action
+    {
+        return Action::make('create')
+            ->label('Create Announcement')
+            ->icon('heroicon-o-plus')
+            ->color('primary')
+            ->modalHeading('Create Announcement')
+            ->modalSubmitActionLabel('Create')
+            ->modalWidth('2xl')
+            ->schema([TextInput::make('title')->required()->maxLength(255)->autofocus()->placeholder('Enter announcement title'), Textarea::make('content')->required()->rows(6)->placeholder('Write your announcement here...')->columnSpanFull()])
+            ->action(function (array $data): void {
+                $this->section->news()->create([
+                    'title' => $data['title'],
+                    'content' => $data['content'],
+                    'teacher_id' => $this->section->teacher_id,
+                ]);
+            });
     }
 };
 ?>
 
-@php
-    $announcements = collect();
-@endphp
 
 <div>
-    @if ($announcements->isEmpty())
+    @if ($this->news()->isEmpty())
         <!-- Empty State -->
         <div
             class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-8 md:p-12 text-center">
@@ -32,17 +57,18 @@ new class extends Component
                 News and announcements for this section will appear here.
             </p>
             <div class="mt-6">
-                <button
-                    class="inline-flex items-center gap-2 px-4 py-2 text-xs md:text-sm font-medium text-white bg-[#204ab5] hover:bg-[#1a3d94] rounded-lg transition-colors duration-200">
-                    <x-heroicon-o-plus class="w-4 h-4 md:w-5 md:h-5" />
-                    Create Announcement
-                </button>
+                {{ $this->createAction }}
             </div>
         </div>
     @else
+        <!-- Create Announcement Button -->
+        <div class="mb-4">
+            {{ ($this->createAction)(['color' => 'primary']) }}
+        </div>
+
         <!-- Announcements List -->
         <div class="space-y-3 md:space-y-4">
-            @foreach ($announcements as $announcement)
+            @foreach ($this->news() as $announcement)
                 <div class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 md:p-6">
                     <div class="flex items-start gap-3 md:gap-4">
                         <div
@@ -65,4 +91,6 @@ new class extends Component
             @endforeach
         </div>
     @endif
+
+    <x-filament-actions::modals />
 </div>

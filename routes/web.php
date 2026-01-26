@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Livewire\Teacher\Sections;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -64,5 +63,15 @@ Route::middleware(['auth', 'teacher'])->prefix('teacher')->group(function () {
         ->scopeBindings()
         ->name('teacher.lesson.edit');
 
-    Route::livewire('/manage-sections', 'pages::teacher.manage-sections')->name('teacher.manage-sections');
+    Route::livewire('/manage-sections', 'pages::teacher.manage-sections')
+        ->middleware('can:create,App\Models\Section')
+        ->name('teacher.manage-sections');
+
+    Route::livewire('/manage-sections/create', 'pages::teacher.manage-sections.create')
+        ->middleware('can:create,App\Models\Section')
+        ->name('teacher.manage-sections.create');
+
+    Route::livewire('/manage-sections/{section}', 'pages::teacher.manage-sections.view')
+        ->middleware('can:view,App\Models\Section')
+        ->name('teacher.manage-sections.view');
 });

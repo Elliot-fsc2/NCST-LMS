@@ -4,10 +4,18 @@ namespace App\Policies;
 
 use App\Models\Section;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class SectionPolicy
 {
+    public function before(User $user, $ability): ?bool
+    {
+        if ($user->profile?->is_department_head) {
+            return true;
+        }
+
+        return null;
+    }
+
     /**
      * Determine whether the user can view any models.
      */

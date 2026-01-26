@@ -54,7 +54,7 @@
                 </div>
 
                 <!-- Navigation -->
-                <nav class="flex-1 overflow-y-auto p-4 space-y-1">
+                <nav class="flex-1 overflow-y-auto p-4 space-y-1 z-0">
                     <a href="{{ route(Auth::user()->role . '.home') }}" wire:navigate
                         class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl {{ request()->routeIs(Auth::user()->role . '.home') ? 'bg-[#204ab5] text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition">
                         <x-heroicon-o-home class="w-5 h-5" />
@@ -177,7 +177,7 @@
                                 {{ $header ?? 'Dashboard' }}
                             </h1>
                             @isset($subheader)
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 hidden md:block">
                                     {{ $subheader }}
                                 </p>
                             @endisset

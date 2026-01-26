@@ -33,9 +33,7 @@ Route::middleware('auth')->group(function () {
 
 // Student Routes
 Route::middleware(['auth', 'student'])->group(function () {
-    Route::get('/home', function () {
-        return view('student.home');
-    })->name('student.home');
+    Route::livewire('/home', 'pages::student.home')->name('student.home');
 });
 
 // Teacher Routes

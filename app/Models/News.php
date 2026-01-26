@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Department extends Model
+class News extends Model
 {
     use HasFactory;
 
@@ -16,8 +16,10 @@ class Department extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'code',
+        'title',
+        'content',
+        'section_id',
+        'teacher_id',
     ];
 
     /**
@@ -29,11 +31,18 @@ class Department extends Model
     {
         return [
             'id' => 'integer',
+            'section_id' => 'integer',
+            'teacher_id' => 'integer',
         ];
     }
 
-    public function teachers(): HasMany
+    public function section(): BelongsTo
     {
-        return $this->hasMany(Teacher::class);
+        return $this->belongsTo(Section::class);
+    }
+
+    public function teacher(): BelongsTo
+    {
+        return $this->belongsTo(Teacher::class);
     }
 }

@@ -79,4 +79,10 @@ models:
     answer_text: text nullable
     is_correct: boolean nullable
 
+  News:
+    title: string
+    content: text
+    section_id: id foreign
+    teacher_id: id foreign
+
 # seeders: Student, Teacher, Department, Course

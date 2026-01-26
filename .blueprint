@@ -1,27 +1,17 @@
 created:
-    - database/factories/DepartmentFactory.php
-    - database/factories/CourseFactory.php
-    - database/factories/StudentFactory.php
-    - database/factories/TeacherFactory.php
-    - database/factories/SectionFactory.php
-    - database/factories/LessonFactory.php
-    - database/factories/QuizFactory.php
-    - database/factories/QuestionFactory.php
-    - database/factories/OptionFactory.php
-    - database/factories/QuizAttemptFactory.php
-    - database/factories/StudentAnswerFactory.php
-    - database/migrations/2026_01_24_122119_create_departments_table.php
-    - database/migrations/2026_01_24_122120_create_courses_table.php
-    - database/migrations/2026_01_24_122121_create_students_table.php
-    - database/migrations/2026_01_24_122122_create_teachers_table.php
-    - database/migrations/2026_01_24_122123_create_sections_table.php
-    - database/migrations/2026_01_24_122124_create_lessons_table.php
-    - database/migrations/2026_01_24_122125_create_quizzes_table.php
-    - database/migrations/2026_01_24_122126_create_questions_table.php
-    - database/migrations/2026_01_24_122127_create_options_table.php
-    - database/migrations/2026_01_24_122128_create_quiz_attempts_table.php
-    - database/migrations/2026_01_24_122129_create_student_answers_table.php
-    - database/migrations/2026_01_24_122130_create_section_student_table.php
+    - database/migrations/2026_01_26_070842_create_departments_table.php
+    - database/migrations/2026_01_26_070843_create_courses_table.php
+    - database/migrations/2026_01_26_070844_create_students_table.php
+    - database/migrations/2026_01_26_070845_create_teachers_table.php
+    - database/migrations/2026_01_26_070846_create_sections_table.php
+    - database/migrations/2026_01_26_070847_create_lessons_table.php
+    - database/migrations/2026_01_26_070848_create_quizzes_table.php
+    - database/migrations/2026_01_26_070849_create_questions_table.php
+    - database/migrations/2026_01_26_070850_create_options_table.php
+    - database/migrations/2026_01_26_070851_create_quiz_attempts_table.php
+    - database/migrations/2026_01_26_070852_create_student_answers_table.php
+    - database/migrations/2026_01_26_070853_create_news_table.php
+    - database/migrations/2026_01_26_070854_create_section_student_table.php
     - app/Models/Department.php
     - app/Models/Course.php
     - app/Models/Student.php
@@ -33,16 +23,13 @@ created:
     - app/Models/Option.php
     - app/Models/QuizAttempt.php
     - app/Models/StudentAnswer.php
-    - database/seeders/StudentSeeder.php
-    - database/seeders/TeacherSeeder.php
-    - database/seeders/DepartmentSeeder.php
-    - database/seeders/CourseSeeder.php
+    - app/Models/News.php
 models:
     User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, role: 'string nullable', userable_type: 'string nullable', userable_id: 'biginteger unsigned nullable', remember_token: 'string:100 nullable' }
     Department: { name: 'string unique', code: 'string unique' }
     Course: { name: string, code: 'string unique', department_id: 'id foreign' }
     Student: { first_name: string, middle_name: 'string nullable', last_name: string, student_number: 'string unique', course_id: 'id foreign', relationships: { belongsToMany: Section } }
-    Teacher: { first_name: string, middle_name: 'string nullable', last_name: string, department_id: 'id foreign' }
+    Teacher: { first_name: string, middle_name: 'string nullable', last_name: string, department_id: 'id foreign', is_department_head: 'boolean default:false' }
     Section: { name: string, course_id: 'id foreign', teacher_id: 'id foreign', relationships: { belongsToMany: Student } }
     Lesson: { title: string, content: text, section_id: 'id foreign', file_path: string }
     Quiz: { title: string, description: 'text nullable', section_id: 'id foreign', time_limit: 'integer nullable', max_attempts: 'integer nullable', is_published: 'boolean default:false', available_from: 'timestamp nullable', available_until: 'timestamp nullable', relationships: { hasMany: Question } }
@@ -50,3 +37,4 @@ models:
     Option: { question_id: 'id foreign', option_text: string, is_correct: boolean }
     QuizAttempt: { quiz_id: 'id foreign', student_id: 'id foreign', score: 'decimal:5,2 nullable', started_at: 'timestamp nullable', completed_at: 'timestamp nullable', relationships: { hasMany: StudentAnswer } }
     StudentAnswer: { quiz_attempt_id: 'id foreign', question_id: 'id foreign', option_id: 'id foreign nullable', answer_text: 'text nullable', is_correct: 'boolean nullable' }
+    News: { title: string, content: text, section_id: 'id foreign', teacher_id: 'id foreign' }

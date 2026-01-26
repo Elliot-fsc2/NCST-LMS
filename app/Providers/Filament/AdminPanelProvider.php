@@ -33,6 +33,10 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors([
                 'primary' => Color::Sky,
+                'secondary' => Color::Gray,
+                'success' => Color::Green,
+                'warning' => Color::Yellow,
+                'danger' => Color::Red,
             ])
             ->spa()
             ->databaseTransactions()

@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Departments;
 
+use App\Filament\Resources\Departments\Pages\DepartmentHeads;
 use App\Filament\Resources\Departments\Pages\ManageDepartments;
 use App\Models\Department;
 use BackedEnum;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -73,6 +75,7 @@ class DepartmentResource extends Resource
     {
         return [
             'index' => ManageDepartments::route('/'),
+            'heads' => DepartmentHeads::route('/heads'),
         ];
     }
 }

@@ -1,4 +1,4 @@
-# LMS NCST
+# LMS
 
 A Learning Management System built with Laravel 12, Filament 5, and Livewire 4.
 

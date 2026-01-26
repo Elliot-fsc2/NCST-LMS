@@ -54,7 +54,7 @@ new class extends Component implements HasSchemas {
     </div>
     <div class="p-6 pt-0">
         <a href="{{ route('teacher.manage-sections.create') }}" wire:navigate
-            class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             aria-label="Create Section">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -67,8 +67,7 @@ new class extends Component implements HasSchemas {
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-7 p-6" wire:key="sections-{{ $selectedCourse }}">
         @forelse ($this->sections() as $section)
-            <a href="{{ route('teacher.manage-sections.view', ['section' => $section]) }}"
-                class="block"
+            <a href="{{ route('teacher.manage-sections.view', ['section' => $section]) }}" wire:navigate
                 wire:key="section-link-{{ $section->id }}">
                 <x-section-cards :sectionName="$section->name" :students="$section->students_count" :course="$section->course->code" :teacher="$section->teacher->user->name"
                     wire:key="section-{{ $section->id }}" />

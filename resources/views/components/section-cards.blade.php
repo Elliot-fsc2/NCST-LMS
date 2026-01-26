@@ -7,7 +7,8 @@
 ])
 <div>
 
-    <article class="flex flex-col bg-blue-500 h-80">
+    <article
+        class="flex flex-col bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 dark:from-blue-600 dark:via-blue-700 dark:to-indigo-700 h-80 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
         <div class="relative h-48 md:h-56 overflow-hidden bg-stone-200 dark:bg-stone-800">
             <img src="{{ $image }}"
                 class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
@@ -23,14 +24,14 @@
             </span>
         </div>
 
-        <div class="p-4 flex flex-col gap-3">
+        <div class="p-4 flex flex-col gap-3 bg-white dark:bg-gray-900 flex-1">
             <div class="flex items-start justify-between gap-4">
                 <h3 class="text-lg lg:text-xl font-bold text-stone-900 dark:text-stone-50 truncate"
                     aria-describedby="featureDescription">{{ $sectionName }}</h3>
 
                 <div class="flex items-center gap-2">
                     <span
-                        class="inline-flex items-center rounded-md bg-stone-100 dark:bg-stone-800 px-2.5 py-1 text-xs font-medium text-stone-700 dark:text-stone-200">
+                        class="inline-flex items-center rounded-md bg-blue-100 dark:bg-blue-900 px-2.5 py-1 text-xs font-medium text-blue-700 dark:text-blue-200">
                         {{ number_format($students) }} {{ Str::plural('student', $students) }}
                     </span>
                 </div>

@@ -52,7 +52,7 @@ new class extends Component implements HasSchemas {
     {
         $data = $this->form->getState();
 
-        Section::create([
+        App\Models\Section::create([
             'name' => $data['name'],
             'course_id' => $data['course_id'],
             'teacher_id' => $data['teacher_id'],

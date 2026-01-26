@@ -1,14 +1,62 @@
 <?php
 
 use App\Models\Section;
+use Livewire\Attributes\Url;
 use Livewire\Component;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Actions\Action;
+use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\DB;
 
-new class extends Component {
+new class extends Component implements HasActions, HasSchemas {
+    use InteractsWithActions;
+    use InteractsWithSchemas;
+
     public Section $section;
+
+    #[Url]
+    public string $tab = 'news';
 
     public function mount(): void
     {
         $this->section->load(['students.user', 'lessons', 'quizzes', 'news.teacher', 'course']);
+    }
+
+    public function setTab(string $tab): void
+    {
+        $this->tab = $tab;
+    }
+
+    public function deleteAction(): Action
+    {
+        return Action::make('delete')
+            ->label('Delete Section')
+            ->requiresConfirmation()
+            ->modalHeading('Delete Section')
+            ->modalSubheading('Are you sure you want to delete this section? This will also delete all lessons, quizzes, and news associated with this section.')
+            ->modalButton('Delete')
+            ->color('danger')
+            ->action(function () {
+                try {
+                    DB::transaction(function () {
+                        $this->section->lessons()->delete();
+                        $this->section->quizzes()->delete();
+                        $this->section->news()->delete();
+                        $this->section->students()->detach();
+
+                        $this->section->delete();
+                    });
+
+                    Notification::make()->title('Section deleted successfully.')->success()->send();
+
+                    $this->redirectRoute('teacher.manage-sections', navigate: true);
+                } catch (\Exception $e) {
+                    Notification::make()->title('Error deleting section')->body('Unable to delete this section. Please try again.')->danger()->send();
+                }
+            });
     }
 };
 ?>
@@ -18,67 +66,57 @@ new class extends Component {
 
 <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Breadcrumb -->
-        <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
-            <a href="{{ route('teacher.manage-sections') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400">
-                Sections
-            </a>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-            <span class="text-gray-900 dark:text-white font-medium">{{ $section->name }}</span>
-        </nav>
+        <!-- Breadcrumb & Actions -->
+        <div class="flex items-center justify-between mb-6">
+            <nav class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <a href="{{ route('teacher.manage-sections') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400">
+                    Sections
+                </a>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                <span class="text-gray-900 dark:text-white font-medium">{{ $section->name }}</span>
+            </nav>
+
+            <div>
+                {{ $this->deleteAction }}
+            </div>
+        </div>
 
         <!-- Main Grid Layout -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Main Content Area (Left) -->
             <div class="lg:col-span-2 space-y-6">
-                <!-- Section Header -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ $section->name }}</h2>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Course: <span
-                            class="font-medium text-gray-900 dark:text-white">{{ $section->course->name }}</span>
-                    </p>
+                <!-- Tabs Navigation -->
+                <div class="-mx-4 sm:mx-0">
+                    <div class="border-b border-gray-200 dark:border-gray-800">
+                        <nav class="flex gap-1 md:gap-2 overflow-x-auto hide-scrollbar px-4 sm:px-0" aria-label="Tabs">
+                            <button type="button" wire:click="setTab('news')"
+                                class="px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-medium transition-colors border-b-2 whitespace-nowrap {{ $tab === 'news' ? 'border-[#204ab5] text-[#204ab5] dark:text-blue-400 dark:border-blue-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' }}">
+                                <div class="flex items-center gap-1.5 md:gap-2">
+                                    <x-heroicon-o-newspaper class="w-4 h-4 md:w-5 md:h-5" />
+                                    <span>News</span>
+                                </div>
+                            </button>
+
+                            <button type="button" wire:click="setTab('lessons')"
+                                class="px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-medium transition-colors border-b-2 whitespace-nowrap {{ $tab === 'lessons' ? 'border-[#204ab5] text-[#204ab5] dark:text-blue-400 dark:border-blue-400' : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600' }}">
+                                <div class="flex items-center gap-1.5 md:gap-2">
+                                    <x-heroicon-o-book-open class="w-4 h-4 md:w-5 md:h-5" />
+                                    <span>Lessons</span>
+                                </div>
+                            </button>
+                        </nav>
+                    </div>
                 </div>
 
-                <!-- News Section -->
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">News & Announcements</h3>
-                    </div>
-
-                    @forelse ($section->news as $newsItem)
-                        <div
-                            class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6">
-                            <div class="flex items-start justify-between gap-4 mb-3">
-                                <h4 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $newsItem->title }}
-                                </h4>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                                    {{ $newsItem->created_at->diffForHumans() }}
-                                </span>
-                            </div>
-                            <div class="prose prose-sm dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
-                                {{ $newsItem->content }}
-                            </div>
-                            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
-                                <p class="text-sm text-gray-500 dark:text-gray-400">
-                                    Posted by {{ $newsItem->teacher->user->name }}
-                                </p>
-                            </div>
-                        </div>
-                    @empty
-                        <div
-                            class="bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 p-8 text-center">
-                            <svg class="w-12 h-12 mx-auto text-gray-400 dark:text-gray-600 mb-4" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z">
-                                </path>
-                            </svg>
-                            <p class="text-gray-500 dark:text-gray-400">No announcements yet.</p>
-                        </div>
-                    @endforelse
+                <!-- Tab Content -->
+                <div>
+                    @if ($tab === 'news')
+                        <livewire:teacher.manage-sections.news-tab :section="$section" />
+                    @elseif ($tab === 'lessons')
+                        <livewire:teacher.manage-sections.lessons-tab :section="$section" />
+                    @endif
                 </div>
             </div>
 
@@ -160,4 +198,5 @@ new class extends Component {
             </aside>
         </div>
     </div>
+    <x-filament-actions::modals />
 </div>

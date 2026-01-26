@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-new class extends Component
-{
+new class extends Component {
     public $student;
 
     public $sections;
@@ -111,11 +110,13 @@ new class extends Component
                         <div class="space-y-3">
                             <div>
                                 <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Student Number</p>
-                                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $student->student_number }}</p>
+                                <p class="text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ $student->student_number }}</p>
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Course</p>
-                                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $student->course->name }}</p>
+                                <p class="text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ $student->course->name }}</p>
                             </div>
                         </div>
                     </div>
